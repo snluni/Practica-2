@@ -59,4 +59,12 @@ class TestLineBreaker {
 			lineBreaker.breakText("test test test test", 9)
 		);
 	}
+
+	@Test
+	void lineExample8() {
+		assertEquals(
+			"test\ntest",
+			lineBreaker.breakText("test  test", 4)
+		);
+	}
 }

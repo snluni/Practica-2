@@ -79,6 +79,6 @@ class TestLineBreaker {
 	
 	@Test
 	void lineExample11() {
-		
+		assertEquals("test-\ntest-\ntest", lineBreaker.breakText("testtesttest", 5));
 	}
 }

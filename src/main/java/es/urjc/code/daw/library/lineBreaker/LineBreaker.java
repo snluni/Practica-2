@@ -6,18 +6,21 @@ public class LineBreaker {
 	public static final char HYPHEN = '-';
 	
 	public String breakText(String text, int lineLength) {
+		int lineDivider = lineLength;
 		text.trim();
-		if (text.length() <= lineLength) {return text;}
 		StringBuilder textAux = new StringBuilder(text);
-		int index = searchNearestSpace(textAux, lineLength);
-		if(index > 0) {
-			textAux.setCharAt(index, NEXTLINE);
-			deleteRightSpaces(textAux,index+1);
-			deleteLeftSpaces(textAux,index-1);
-		}
-		else {
-			textAux.insert(lineLength-1,NEXTLINE);
-			textAux.insert(lineLength-1,HYPHEN);
+		while(lineDivider < textAux.length()) {
+			int index = searchNearestSpace(textAux, lineDivider);
+			if(index > 0) {
+				textAux.setCharAt(index, NEXTLINE);
+				deleteRightSpaces(textAux,index+1);
+				deleteLeftSpaces(textAux,index-1);
+			}
+			else {
+				textAux.insert(lineDivider-1,NEXTLINE);
+				textAux.insert(lineDivider-1,HYPHEN);
+			}
+			lineDivider = lineDivider + lineLength + 1;
 		}
 		return textAux.toString();
 	}
@@ -27,10 +30,12 @@ public class LineBreaker {
 	) {
 		int index = startingIndex;
 		char charAtIndex = text.charAt(index);
-		while (index > 0 && charAtIndex != ' ') {
+		while (index > 0 && charAtIndex !=SPACE && charAtIndex !=NEXTLINE ) {
 			index--;
 			charAtIndex = text.charAt(index);
 		}
+		if(charAtIndex ==NEXTLINE)
+			return -1;
 		return index;
 	}
 	

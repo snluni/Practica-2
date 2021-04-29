@@ -67,18 +67,34 @@ class TestLineBreaker {
 			lineBreaker.breakText("test  test", 4)
 		);
 	}
+
 	@Test
 	void lineExample9() {
 		assertEquals("test\ntest", lineBreaker.breakText("test   test", 6));
 	}
-	
+
 	@Test
 	void lineExample10() {
 		assertEquals("test-\ntest", lineBreaker.breakText("testtest", 5));
 	}
-	
+
 	@Test
 	void lineExample11() {
 		assertEquals("test-\ntest-\ntest", lineBreaker.breakText("testtesttest", 5));
+	}
+
+	@Test
+	void lineExample12() {
+		assertEquals("te-\nst\nte-\nst", lineBreaker.breakText("test test", 3));
+	}
+
+	@Test
+	void lineExample13() {
+		assertEquals("test\n12345-\n67\ntest", lineBreaker.breakText("test 1234567 test", 6));
+	}
+
+	@Test
+	void lineExample14() {
+		assertEquals("12-\n34-\n56-\n789", lineBreaker.breakText("123456789", 3));
 	}
 }

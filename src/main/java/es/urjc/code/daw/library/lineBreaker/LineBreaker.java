@@ -7,34 +7,31 @@ public class LineBreaker {
 	
 	public String breakText(String text, int lineLength) {
 		int lineDivider = lineLength;
-		text.trim();
-		StringBuilder textAux = new StringBuilder(text);
-		while(lineDivider < textAux.length()) {
+		StringBuilder textAux = new StringBuilder(text.trim());
+		while (lineDivider < textAux.length()) {
 			int index = searchNearestSpace(textAux, lineDivider);
-			if(index > 0) {
-				textAux.setCharAt(index, NEXTLINE);
-				deleteRightSpaces(textAux,index+1);
-				deleteLeftSpaces(textAux,index-1);
-			}
-			else {
-				textAux.insert(lineDivider-1,NEXTLINE);
-				textAux.insert(lineDivider-1,HYPHEN);
+			if (index > 0) {
+				lineDivider = index;
+				textAux.setCharAt(lineDivider, NEXTLINE);
+				deleteRightSpaces(textAux, lineDivider + 1);
+				deleteLeftSpaces(textAux, lineDivider - 1);
+			} else {
+				textAux.insert(lineDivider - 1,NEXTLINE);
+				textAux.insert(lineDivider - 1,HYPHEN);
 			}
 			lineDivider = lineDivider + lineLength + 1;
 		}
 		return textAux.toString();
 	}
 	
-	private int searchNearestSpace(
-		StringBuilder text, int startingIndex
-	) {
+	private int searchNearestSpace(StringBuilder text, int startingIndex) {
 		int index = startingIndex;
 		char charAtIndex = text.charAt(index);
-		while (index > 0 && charAtIndex !=SPACE && charAtIndex !=NEXTLINE ) {
+		while (index > 0 && charAtIndex != SPACE && charAtIndex != NEXTLINE) {
 			index--;
 			charAtIndex = text.charAt(index);
 		}
-		if(charAtIndex ==NEXTLINE)
+		if(charAtIndex == NEXTLINE)
 			return -1;
 		return index;
 	}

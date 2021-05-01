@@ -17,6 +17,7 @@ class TestBookService {
 		book = mock(Book.class);
 		when(book.getTitle()).thenReturn("A wolf in the sky");
 		when(book.getId()).thenReturn((long) 98);
+		when(book.getDescription()).thenReturn("Wolfy is a good boy, and likes to fly to the moon.");
 		
 		repository = mock(BookRepository.class);
 		when(repository.save(book)).thenReturn(book);

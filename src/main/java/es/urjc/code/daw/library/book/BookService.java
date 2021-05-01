@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import es.urjc.code.daw.library.lineBreaker.LineBreaker;
 import es.urjc.code.daw.library.notification.NotificationService;
 
 /* Este servicio se usará para incluir la funcionalidad que sea 
@@ -34,6 +35,7 @@ public class BookService {
 	}
 
 	public Book save(Book book) {
+		book.setDescription(LineBreaker.breakText(book.getDescription(), 10));
 		Book newBook = repository.save(book);
 		notificationService.notify("Book Event: book with title="+newBook.getTitle()+" was created");
 		return newBook;

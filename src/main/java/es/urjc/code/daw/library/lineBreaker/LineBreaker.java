@@ -4,8 +4,9 @@ public class LineBreaker {
 	public static final char NEXTLINE = '\n';
 	public static final char SPACE = ' ';
 	public static final char HYPHEN = '-';
-	
-	public String breakText(String text, int lineLength) {
+
+	public static String breakText(String text, int lineLength) {
+		if (text == null) {return null;}
 		int lineDivider = lineLength;
 		StringBuilder textAux = new StringBuilder(text.trim());
 		while (lineDivider < textAux.length()) {
@@ -24,7 +25,7 @@ public class LineBreaker {
 		return textAux.toString();
 	}
 	
-	private int searchNearestSpace(StringBuilder text, int startingIndex) {
+	private static int searchNearestSpace(StringBuilder text, int startingIndex) {
 		int index = startingIndex;
 		char charAtIndex = text.charAt(index);
 		while (index > 0 && charAtIndex != SPACE && charAtIndex != NEXTLINE) {
@@ -36,14 +37,14 @@ public class LineBreaker {
 		return index;
 	}
 	
-	private void deleteRightSpaces(StringBuilder text, int startingIndex) {
+	private static void deleteRightSpaces(StringBuilder text, int startingIndex) {
 		char charAux = text.charAt(startingIndex);
 		while (startingIndex < text.length() && charAux == SPACE) {
 			text.deleteCharAt(startingIndex);
 			charAux = text.charAt(startingIndex);
 		}
 	}
-	private void deleteLeftSpaces(StringBuilder text, int startingIndex) {
+	private static void deleteLeftSpaces(StringBuilder text, int startingIndex) {
 		char charAux = text.charAt(startingIndex);
 		while (startingIndex >= 0 && charAux == SPACE) {
 			text.deleteCharAt(startingIndex);

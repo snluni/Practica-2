@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import es.urjc.code.daw.library.book.Book;
-import es.urjc.code.daw.library.book.BookRepository;
 import es.urjc.code.daw.library.book.BookService;
 
 @Component

@@ -1,16 +1,9 @@
 package es.urjc.code.daw.library.lineBreaker;
 
 import static org.junit.jupiter.api.Assertions.*;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class TestLineBreaker {
-	private LineBreaker lineBreaker;
-
-	@BeforeEach
-	void setUp() {
-		lineBreaker = new LineBreaker();
-	}
 
 	@Test
 	void lineExample1() {
@@ -30,42 +23,27 @@ class TestLineBreaker {
 
 	@Test
 	void lineExample4() {
-		assertEquals(
-			"test\ntest",
-			LineBreaker.breakText("test test", 4)
-		);
+		assertEquals("test\ntest", LineBreaker.breakText("test test", 4));
 	}
 
 	@Test
 	void lineExample5() {
-		assertEquals(
-			"test\ntest",
-			LineBreaker.breakText("test test", 5)
-		);
+		assertEquals("test\ntest", LineBreaker.breakText("test test", 5));
 	}
 
 	@Test
 	void lineExample6() {
-		assertEquals(
-			"test\ntest",
-			LineBreaker.breakText("test test", 6)
-		);
+		assertEquals("test\ntest", LineBreaker.breakText("test test", 6));
 	}
 
 	@Test
 	void lineExample7() {
-		assertEquals(
-			"test test\ntest test",
-			LineBreaker.breakText("test test test test", 9)
-		);
+		assertEquals("test test\ntest test", LineBreaker.breakText("test test test test", 9));
 	}
 
 	@Test
 	void lineExample8() {
-		assertEquals(
-			"test\ntest",
-			LineBreaker.breakText("test  test", 4)
-		);
+		assertEquals("test\ntest", LineBreaker.breakText("test  test", 4));
 	}
 
 	@Test
